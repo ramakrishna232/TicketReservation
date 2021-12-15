@@ -1,0 +1,71 @@
+﻿
+@using System.Data.SqlClient;
+@using System.Web;
+@using System.Configuration;
+@{
+    ViewBag.Title = "Bus";
+}
+
+<h2>Bus</h2>
+@using(Html.BeginForm())
+{
+    <table>
+        <tr>
+            @Html.Label("Source")
+            @Html.TextBox("source")
+
+            @Html.Label("Destination")
+            @Html.TextBox("destination")
+
+            @Html.Label("Date")
+            <input type="date" />
+
+            <input type="submit" value="Submit" class="btn btn-primary " style="position:absolute;left:850px;" />
+        </tr>
+        <tr>
+            <td>
+            </td>
+        </tr>
+    </table>
+
+}
+<br />
+<br />
+@{
+    string Connection = ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString;
+    SqlConnection sqlConnection = new SqlConnection(Connection);
+    sqlConnection.Open();
+    SqlCommand sqlCommand = new SqlCommand("select * from Bus where Source='" + ViewBag.Source + "' and Destination='" + ViewBag.Destination + "'", sqlConnection);
+    SqlDataReader dataReader = sqlCommand.ExecuteReader();
+
+
+    <table class="table-bordered">
+        <tr>
+            <td>Source</td>
+            <td>Destination</td>
+            <td>BusType</td>
+            <td>BusServiceNo</td>
+            <td>Fare</td>
+            <td>Available</td>
+        </tr>
+        @while (dataReader.Read())
+        {
+            <tr>
+                <td>@dataReader.GetValue(0)</td>
+                <td>@dataReader.GetValue(1)</td>
+                <td>@dataReader.GetValue(2)</td>
+                <td>@dataReader.GetValue(3)</td>
+                <td>@dataReader.GetValue(4)</td>
+                <td>@{
+                    int result = (int)dataReader.GetValue(5);
+                    if(result>0){
+                        <p>AVBL_@result</p>
+                        <button style="color:darkgreen;border:none;"@Html.ActionLink("Book_Now","create","passengers")</button>
+                    }
+                }</td>
+            </tr>
+
+        }
+
+    </table>
+}

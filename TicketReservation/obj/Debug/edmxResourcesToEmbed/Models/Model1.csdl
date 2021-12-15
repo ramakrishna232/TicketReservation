@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ReservationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Train">
+    <Key>
+      <PropertyRef Name="sno" />
+    </Key>
+    <Property Name="Source" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Destination" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TrainName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TrainNo" Type="Int32" />
+    <Property Name="ACFare" Type="Int32" />
+    <Property Name="SLFare" Type="Int32" />
+    <Property Name="SSFare" Type="Int32" />
+    <Property Name="ACAvailable" Type="Int32" />
+    <Property Name="SLAvailable" Type="Int32" />
+    <Property Name="SSAvailable" Type="Int32" />
+    <Property Name="sno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityContainer Name="ReservationEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Trains" EntityType="Self.Train" />
+  </EntityContainer>
+</Schema>

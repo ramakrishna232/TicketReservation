@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Payment";
+}
+
+<h2>Payment</h2>
+
+<form class="form-group">
+    <label>CardNo:<input type="text" required /></label>
+    <br />
+    <label>Expiry:<input type="month" required /></label>
+    <br />
+
+    <label>CVV:<input type="text" required /></label>
+    <button>@Html.ActionLink("Submit", "SLPassengerDetail", "SLPassengers")</button>
+
+
+</form>

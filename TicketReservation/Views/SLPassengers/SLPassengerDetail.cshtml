@@ -1,0 +1,61 @@
+﻿@model IEnumerable<TicketReservation.Models.SLPassenger>
+@using System.Data.SqlClient;
+@using System.Configuration;
+@{
+    ViewBag.Title = "SLPassenger";
+}
+
+<h2>SLPassenger</h2>
+
+@{
+    string connection = ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString;
+    SqlConnection sqlConnection = new SqlConnection(connection);
+    sqlConnection.Open();
+    SqlCommand countCommand = new SqlCommand("select count(name) from SLPassengers", sqlConnection);
+    int result = (int)countCommand.ExecuteScalar();
+    SqlCommand SlAvailable = new SqlCommand("select SLAvailable from Trains", sqlConnection);
+    SqlDataReader dataReader = SlAvailable.ExecuteReader();
+    dataReader.Read();
+    int Sl = (int)dataReader.GetValue(0);
+    dataReader.Close();
+    SqlCommand sqlCommand = new SqlCommand("truncate table SLPassengers", sqlConnection);
+    SqlCommand RemainingAcCommand = new SqlCommand("update Trains set SLAvailable=SLAvailable-'" + result + "' where SLAvailable='" + Sl + "' ", sqlConnection); ;
+    RemainingAcCommand.ExecuteNonQuery();
+    sqlCommand.ExecuteNonQuery();
+}
+<h2>passengerDetail</h2>
+<h3>Your ticket details:</h3>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            SeatNO
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                <p>CN/Rf/Sl-@Sl</p>
+            </td>
+        </tr>
+    }
+</table>

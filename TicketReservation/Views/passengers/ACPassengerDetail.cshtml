@@ -1,0 +1,81 @@
+﻿@model IEnumerable<TicketReservation.Models.passenger>
+@using System.Data.SqlClient
+
+@{
+    ViewBag.Title = "passengerDetail";
+}
+@{
+    SqlConnection sqlConnection = new SqlConnection("server=.;database=Reservation;integrated security=SSPI");
+    sqlConnection.Open();
+    SqlCommand countCommand = new SqlCommand("select count(name) from passenger", sqlConnection);
+    int result = (int)countCommand.ExecuteScalar();
+    SqlCommand AcAvailable = new SqlCommand("select ACAvailable from Trains",sqlConnection);
+    SqlDataReader dataReader = AcAvailable.ExecuteReader();
+    dataReader.Read();
+    int Ac = (int)dataReader.GetValue(0);
+    dataReader.Close();
+    SqlCommand sqlCommand = new SqlCommand("truncate table passenger", sqlConnection);
+    SqlCommand RemainingAcCommand = new SqlCommand("update Trains set ACAvailable=ACAvailable-'" + result + "' where ACAvailable='"+Ac+"' ",sqlConnection);
+    RemainingAcCommand.ExecuteNonQuery();
+    sqlCommand.ExecuteNonQuery();
+}
+<h2>passengerDetail</h2>
+<h3>Your ticket details:</h3>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            SeatNO
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @{
+                    if (Ac <= 360 && Ac >= 288)
+                    {
+                        <p>CN/RB/A1-@Ac-(@Ac-1)</p>
+                    }
+                    if (Ac < 288 && Ac >= 216)
+                    {
+                        <p>CN/RB/A2-@Ac-(@Ac-1)</p>
+                        
+                    }
+                    if (Ac < 216 && Ac >= 144)
+                    {
+                        <p>CN/RB/A3-@Ac-(@Ac-1)</p>
+                    }
+                    if (Ac < 144 && Ac >= 72)
+                    {
+                        <p>CN/RB/A4-@Ac-(@Ac-1)</p>
+                    }
+                    if (Ac < 72 && Ac > 0)
+                    {
+                        <p>CN/RB/A5-@Ac-(@Ac-1)</p>
+                    }
+                }
+            </td>
+        </tr>
+    }
+</table>
+
+

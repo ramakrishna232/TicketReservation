@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ReservationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Reservation.dbo.Trains' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Trains">
+    <Key>
+      <PropertyRef Name="sno" />
+    </Key>
+    <Property Name="Source" Type="varchar" MaxLength="20" />
+    <Property Name="Destination" Type="varchar" MaxLength="20" />
+    <Property Name="TrainName" Type="varchar" MaxLength="20" />
+    <Property Name="TrainNo" Type="int" />
+    <Property Name="ACFare" Type="int" />
+    <Property Name="SLFare" Type="int" />
+    <Property Name="SSFare" Type="int" />
+    <Property Name="ACAvailable" Type="int" />
+    <Property Name="SLAvailable" Type="int" />
+    <Property Name="SSAvailable" Type="int" />
+    <Property Name="sno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ReservationModelStoreContainer">
+    <EntitySet Name="Trains" EntityType="Self.Trains" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Trains].[Source] AS [Source], 
+    [Trains].[Destination] AS [Destination], 
+    [Trains].[TrainName] AS [TrainName], 
+    [Trains].[TrainNo] AS [TrainNo], 
+    [Trains].[ACFare] AS [ACFare], 
+    [Trains].[SLFare] AS [SLFare], 
+    [Trains].[SSFare] AS [SSFare], 
+    [Trains].[ACAvailable] AS [ACAvailable], 
+    [Trains].[SLAvailable] AS [SLAvailable], 
+    [Trains].[SSAvailable] AS [SSAvailable], 
+    [Trains].[sno] AS [sno]
+    FROM [dbo].[Trains] AS [Trains]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

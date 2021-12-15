@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ReservationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Reservation.dbo.Trains' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Trains">
+          <Key>
+            <PropertyRef Name="sno" />
+          </Key>
+          <Property Name="Source" Type="varchar" MaxLength="20" />
+          <Property Name="Destination" Type="varchar" MaxLength="20" />
+          <Property Name="TrainName" Type="varchar" MaxLength="20" />
+          <Property Name="TrainNo" Type="int" />
+          <Property Name="ACFare" Type="int" />
+          <Property Name="SLFare" Type="int" />
+          <Property Name="SSFare" Type="int" />
+          <Property Name="ACAvailable" Type="int" />
+          <Property Name="SLAvailable" Type="int" />
+          <Property Name="SSAvailable" Type="int" />
+          <Property Name="sno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ReservationModelStoreContainer">
+          <EntitySet Name="Trains" EntityType="Self.Trains" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Trains].[Source] AS [Source], 
+    [Trains].[Destination] AS [Destination], 
+    [Trains].[TrainName] AS [TrainName], 
+    [Trains].[TrainNo] AS [TrainNo], 
+    [Trains].[ACFare] AS [ACFare], 
+    [Trains].[SLFare] AS [SLFare], 
+    [Trains].[SSFare] AS [SSFare], 
+    [Trains].[ACAvailable] AS [ACAvailable], 
+    [Trains].[SLAvailable] AS [SLAvailable], 
+    [Trains].[SSAvailable] AS [SSAvailable], 
+    [Trains].[sno] AS [sno]
+    FROM [dbo].[Trains] AS [Trains]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ReservationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Train">
+          <Key>
+            <PropertyRef Name="sno" />
+          </Key>
+          <Property Name="Source" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Destination" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TrainName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TrainNo" Type="Int32" />
+          <Property Name="ACFare" Type="Int32" />
+          <Property Name="SLFare" Type="Int32" />
+          <Property Name="SSFare" Type="Int32" />
+          <Property Name="ACAvailable" Type="Int32" />
+          <Property Name="SLAvailable" Type="Int32" />
+          <Property Name="SSAvailable" Type="Int32" />
+          <Property Name="sno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityContainer Name="ReservationEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Trains" EntityType="Self.Train" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ReservationModelStoreContainer" CdmEntityContainer="ReservationEntities">
+          <EntitySetMapping Name="Trains">
+            <EntityTypeMapping TypeName="ReservationModel.Train">
+              <MappingFragment StoreEntitySet="Trains">
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="TrainName" ColumnName="TrainName" />
+                <ScalarProperty Name="TrainNo" ColumnName="TrainNo" />
+                <ScalarProperty Name="ACFare" ColumnName="ACFare" />
+                <ScalarProperty Name="SLFare" ColumnName="SLFare" />
+                <ScalarProperty Name="SSFare" ColumnName="SSFare" />
+                <ScalarProperty Name="ACAvailable" ColumnName="ACAvailable" />
+                <ScalarProperty Name="SLAvailable" ColumnName="SLAvailable" />
+                <ScalarProperty Name="SSAvailable" ColumnName="SSAvailable" />
+                <ScalarProperty Name="sno" ColumnName="sno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
