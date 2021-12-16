@@ -7,6 +7,7 @@
 
 <h2>SSPassenger</h2>
 @{
+    int i = 0;
     string connection = ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString;
     SqlConnection sqlConnection = new SqlConnection(connection);
     sqlConnection.Open();
@@ -53,9 +54,20 @@
                 @Html.DisplayFor(modelItem => item.Gender)
             </td>
             <td>
-                <p>CN/Rf/SS-@SS</p>
+                @{
+                    if (SS <= 144 && SS >= 72)
+                    {
+                        <p>CN/RB/D1-@(145 - (SS - 1-i))</p>
+                    }
+                    if (SS < 72&& SS >= 0)
+                    {
+                        <p>CN/RB/D1-@(73 - (SS - 1-i))</p>
+                    }
+
+                }
             </td>
         </tr>
-    }
+                        i++;
+                    }
 </table>
 

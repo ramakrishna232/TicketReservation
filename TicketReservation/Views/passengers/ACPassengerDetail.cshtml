@@ -5,6 +5,7 @@
     ViewBag.Title = "passengerDetail";
 }
 @{
+    int i = 0;
     SqlConnection sqlConnection = new SqlConnection("server=.;database=Reservation;integrated security=SSPI");
     sqlConnection.Open();
     SqlCommand countCommand = new SqlCommand("select count(name) from passenger", sqlConnection);
@@ -53,29 +54,30 @@
                 @{
                     if (Ac <= 360 && Ac >= 288)
                     {
-                        <p>CN/RB/A1-@Ac-(@Ac-1)</p>
+                        <p>CN/RB/A1-@(361-(Ac-1-i))</p>
                     }
                     if (Ac < 288 && Ac >= 216)
                     {
-                        <p>CN/RB/A2-@Ac-(@Ac-1)</p>
+                        <p>CN/RB/A2-@(289-(@Ac-1-i))</p>
                         
                     }
                     if (Ac < 216 && Ac >= 144)
                     {
-                        <p>CN/RB/A3-@Ac-(@Ac-1)</p>
+                        <p>CN/RB/A3-@(217-(@Ac-1-i))</p>
                     }
                     if (Ac < 144 && Ac >= 72)
                     {
-                        <p>CN/RB/A4-@Ac-(@Ac-1)</p>
+                        <p>CN/RB/A4-@(145-(@Ac-1-i))</p>
                     }
                     if (Ac < 72 && Ac > 0)
                     {
-                        <p>CN/RB/A5-@Ac-(@Ac-1)</p>
+                        <p>CN/RB/A5-@(73-(@Ac-1-i))</p>
                     }
                 }
             </td>
         </tr>
-    }
+                        i++;
+                    }
 </table>
 
 

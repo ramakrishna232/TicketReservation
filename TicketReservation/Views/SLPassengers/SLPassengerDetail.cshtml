@@ -8,6 +8,7 @@
 <h2>SLPassenger</h2>
 
 @{
+    int i = 0;
     string connection = ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString;
     SqlConnection sqlConnection = new SqlConnection(connection);
     sqlConnection.Open();
@@ -54,8 +55,62 @@
                 @Html.DisplayFor(modelItem => item.Gender)
             </td>
             <td>
-                <p>CN/Rf/Sl-@Sl</p>
+                @{
+                    if (Sl <= 936 && Sl >= 864)
+                    {
+                        <p>CN/RB/S1-@(936-(Sl-1))</p>
+                    }
+                    if (Sl < 864 && Sl >= 792)
+                    {
+                        <p>CN/RB/S2-@(865-(Sl-1-i))</p>
+                    }
+                    if (Sl <792 && Sl >= 720)
+                    {
+                        <p>CN/RB/S3-@(793-(Sl-1-i))</p>
+                    }
+                    if (Sl <720 && Sl >= 648)
+                    {
+                        <p>CN/RB/S4-@(721-(Sl-1-i))</p>
+                    }
+                    if (Sl <648 && Sl >= 576)
+                    {
+                        <p>CN/RB/S5-@(649-(Sl-1-i))</p>
+                    }
+                    if (Sl <576 && Sl >=504)
+                    {
+                        <p>CN/RB/S6-@(577-(Sl-1-i))</p>
+                    }
+                    if (Sl <504 && Sl >= 432)
+                    {
+                        <p>CN/RB/S7-@(505-(Sl-1-i))</p>
+                    }
+                    if (Sl <432 && Sl >=360)
+                    {
+                        <p>CN/RB/S8-@(433-(Sl-1-i))</p>
+                    }
+                    if (Sl < 360 && Sl >= 288)
+                    {
+                        <p>CN/RB/S9-@(361-(Sl-1-i))</p>
+                    }
+                    if (Sl <288 && Sl >= 216)
+                    {
+                        <p>CN/RB/S10-@(289-(Sl-1-i))</p>
+                    }
+                    if (Sl <216 && Sl >= 144)
+                    {
+                        <p>CN/RB/S11-@(217-(Sl-1-i))</p>
+                    }
+                    if (Sl < 144 && Sl >= 72)
+                    {
+                        <p>CN/RB/S12-@(145-(Sl-1-i))</p>
+                    }
+                    if (Sl < 72 && Sl >= 0)
+                    {
+                        <p>CN/RB/S13-@(73-(Sl-1-i))</p>
+                    }
+                }
             </td>
         </tr>
-    }
+                        i++;
+                    }
 </table>

@@ -202,8 +202,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BusPassengersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\passengersController.cs" />
+    <Compile Include="Controllers\PlaneEconomyPassengersController.cs" />
+    <Compile Include="Controllers\PlanePassengersController.cs" />
     <Compile Include="Controllers\ReservationTypeController.cs" />
     <Compile Include="Controllers\RetriveController.cs" />
     <Compile Include="Controllers\SLPassengersController.cs" />
@@ -211,6 +214,24 @@
     <Compile Include="Controllers\TrainsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Bus.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Bus.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Bus.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Bus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Bus.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Bus.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BusPassenger.cs">
+      <DependentUpon>Bus.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
@@ -245,6 +266,42 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PassengerModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Plane.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Plane.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Plane.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Plane.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Plane.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Plane.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PlaneEconomy.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PlaneEconomy.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PlaneEconomy.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PlaneEconomy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PlaneEconomy.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PlaneEconomy.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PlaneEconomyPassenger.cs">
+      <DependentUpon>PlaneEconomy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PlanePassenger.cs">
+      <DependentUpon>Plane.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SLAvailable.Context.cs">
       <AutoGen>True</AutoGen>
@@ -288,7 +345,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\picture\html.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -297,6 +353,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\Bus.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Bus.edmx</DependentUpon>
+      <LastGenOutput>Bus.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Bus.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Bus.edmx</DependentUpon>
+      <LastGenOutput>Bus.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -316,6 +382,26 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>PassengerModel.edmx</DependentUpon>
       <LastGenOutput>PassengerModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Plane.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Plane.edmx</DependentUpon>
+      <LastGenOutput>Plane.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Plane.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Plane.edmx</DependentUpon>
+      <LastGenOutput>Plane.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\PlaneEconomy.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PlaneEconomy.edmx</DependentUpon>
+      <LastGenOutput>PlaneEconomy.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\PlaneEconomy.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PlaneEconomy.edmx</DependentUpon>
+      <LastGenOutput>PlaneEconomy.cs</LastGenOutput>
     </Content>
     <Content Include="Models\SLAvailable.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -337,6 +423,9 @@
       <DependentUpon>SSAvailable.edmx</DependentUpon>
       <LastGenOutput>SSAvailable.cs</LastGenOutput>
     </Content>
+    <Content Include="Pictures\Bus.jpg" />
+    <Content Include="Pictures\Plane.jpg" />
+    <Content Include="Pictures\Train.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\Model1.edmx">
@@ -366,6 +455,27 @@
     </EntityDeploy>
     <Content Include="Models\SSAvailable.edmx.diagram">
       <DependentUpon>SSAvailable.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\Bus.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Bus.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Bus.edmx.diagram">
+      <DependentUpon>Bus.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\Plane.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Plane.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Plane.edmx.diagram">
+      <DependentUpon>Plane.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\PlaneEconomy.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PlaneEconomy.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\PlaneEconomy.edmx.diagram">
+      <DependentUpon>PlaneEconomy.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -425,8 +535,30 @@
     <Content Include="Views\SSPassengers\Index.cshtml" />
     <Content Include="Views\SSPassengers\Payment.cshtml" />
     <Content Include="Views\SSPassengers\SSPassenger.cshtml" />
+    <Content Include="Views\BusPassengers\Create.cshtml" />
+    <Content Include="Views\BusPassengers\Delete.cshtml" />
+    <Content Include="Views\BusPassengers\Details.cshtml" />
+    <Content Include="Views\BusPassengers\Edit.cshtml" />
+    <Content Include="Views\BusPassengers\Index.cshtml" />
+    <Content Include="Views\BusPassengers\BusPassengerDetail.cshtml" />
+    <Content Include="Views\BusPassengers\Payment.cshtml" />
+    <Content Include="Views\PlanePassengers\Create.cshtml" />
+    <Content Include="Views\PlanePassengers\Delete.cshtml" />
+    <Content Include="Views\PlanePassengers\Details.cshtml" />
+    <Content Include="Views\PlanePassengers\Edit.cshtml" />
+    <Content Include="Views\PlanePassengers\Index.cshtml" />
+    <Content Include="Views\PlanePassengers\BusinessPassengerDetail.cshtml" />
+    <Content Include="Views\PlanePassengers\Payment.cshtml" />
+    <Content Include="Views\PlaneEconomyPassengers\Create.cshtml" />
+    <Content Include="Views\PlaneEconomyPassengers\Delete.cshtml" />
+    <Content Include="Views\PlaneEconomyPassengers\Details.cshtml" />
+    <Content Include="Views\PlaneEconomyPassengers\Edit.cshtml" />
+    <Content Include="Views\PlaneEconomyPassengers\Index.cshtml" />
+    <Content Include="Views\PlaneEconomyPassengers\Passenger.cshtml" />
+    <Content Include="Views\PlaneEconomyPassengers\Payment.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Views\TrainAvailable\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<TicketReservation.Models.PlanePassenger>
+@using System.Data.SqlClient;
+@using System.Configuration;
+@{
+    ViewBag.Title = "PlanePassengerDetail";
+}
+
+<h2>PlanePassengerDetail</h2>
+
+@{
+    int i = 0;
+    string connection = ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString;
+    SqlConnection sqlConnection = new SqlConnection(connection);
+    sqlConnection.Open();
+    SqlCommand countCommand = new SqlCommand("select count(name) from PlanePassengers", sqlConnection);
+    int result = (int)countCommand.ExecuteScalar();
+    SqlCommand Available = new SqlCommand("select BusinessAVBL from Planes", sqlConnection);
+    SqlDataReader dataReader = Available.ExecuteReader();
+    dataReader.Read();
+    int Business = (int)dataReader.GetValue(0);
+    dataReader.Close();
+    SqlCommand sqlCommand = new SqlCommand("truncate table PlanePassengers", sqlConnection);
+    SqlCommand RemainingAcCommand = new SqlCommand("update Planes set BusinessAVBL=BusinessAVBL-'" + result + "' where BusinessAVBL='" + Business + "' ", sqlConnection); ;
+    RemainingAcCommand.ExecuteNonQuery();
+    sqlCommand.ExecuteNonQuery();
+}
+<h2>passengerDetail</h2>
+<h3>Your ticket details:</h3>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            SeatNO
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+               
+                <p>@(21-(Business-1-i))C</p>
+                
+            </td>
+        </tr>
+        i++;
+    }
+</table>

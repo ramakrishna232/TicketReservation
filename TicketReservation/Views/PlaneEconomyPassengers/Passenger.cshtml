@@ -1,0 +1,66 @@
+﻿@model IEnumerable<TicketReservation.Models.PlaneEconomyPassenger>
+@using System.Data.SqlClient;
+@using System.Configuration;
+@{
+    ViewBag.Title = "Passenger";
+}
+
+<h2>Passenger</h2>
+
+@{
+    int i = 0;
+    string connection = ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString;
+    SqlConnection sqlConnection = new SqlConnection(connection);
+    sqlConnection.Open();
+    SqlCommand countCommand = new SqlCommand("select count(name) from PlaneEconomyPassengers", sqlConnection);
+    int result = (int)countCommand.ExecuteScalar();
+    SqlCommand Available = new SqlCommand("select EconomyAVBL from Planes", sqlConnection);
+    SqlDataReader dataReader = Available.ExecuteReader();
+    dataReader.Read();
+    int Economy = (int)dataReader.GetValue(0);
+    dataReader.Close();
+    SqlCommand sqlCommand = new SqlCommand("truncate table PlaneEconomyPassengers", sqlConnection);
+    SqlCommand RemainingAcCommand = new SqlCommand("update Planes set EconomyAVBL=EconomyAVBL-'" + result + "' where EconomyAVBL='" + Economy+ "' ", sqlConnection); ;
+    RemainingAcCommand.ExecuteNonQuery();
+    sqlCommand.ExecuteNonQuery();
+}
+<h2>passengerDetail</h2>
+<h3>Your ticket details:</h3>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            SeatNO
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+
+                <p>@(51-(Economy-1-i))B</p>
+
+            </td>
+        </tr>
+        i++;
+    }
+</table>
