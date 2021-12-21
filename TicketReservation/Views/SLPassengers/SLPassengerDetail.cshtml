@@ -20,7 +20,7 @@
     int Sl = (int)dataReader.GetValue(0);
     dataReader.Close();
     SqlCommand sqlCommand = new SqlCommand("truncate table SLPassengers", sqlConnection);
-    SqlCommand RemainingAcCommand = new SqlCommand("update Trains set SLAvailable=SLAvailable-'" + result + "' where SLAvailable='" + Sl + "' ", sqlConnection); ;
+    SqlCommand RemainingAcCommand = new SqlCommand("update Trains set SLAvailable=SLAvailable-'" + result + "' where SLAvailable='" + Sl + "' and Source='"+TempData["source"]+"' and Destination='"+TempData["destination"]+"'", sqlConnection); ;
     RemainingAcCommand.ExecuteNonQuery();
     sqlCommand.ExecuteNonQuery();
 }

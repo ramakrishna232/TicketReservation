@@ -20,7 +20,7 @@
     int Business = (int)dataReader.GetValue(0);
     dataReader.Close();
     SqlCommand sqlCommand = new SqlCommand("truncate table PlanePassengers", sqlConnection);
-    SqlCommand RemainingAcCommand = new SqlCommand("update Planes set BusinessAVBL=BusinessAVBL-'" + result + "' where BusinessAVBL='" + Business + "' ", sqlConnection); ;
+    SqlCommand RemainingAcCommand = new SqlCommand("update Planes set BusinessAVBL=BusinessAVBL-'" + result + "' where BusinessAVBL='" + Business + "' and Source='"+TempData["source"]+"' and Destination='"+TempData["destination"]+"'", sqlConnection); ;
     RemainingAcCommand.ExecuteNonQuery();
     sqlCommand.ExecuteNonQuery();
 }

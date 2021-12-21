@@ -16,7 +16,7 @@
     int Ac = (int)dataReader.GetValue(0);
     dataReader.Close();
     SqlCommand sqlCommand = new SqlCommand("truncate table passenger", sqlConnection);
-    SqlCommand RemainingAcCommand = new SqlCommand("update Trains set ACAvailable=ACAvailable-'" + result + "' where ACAvailable='"+Ac+"' ",sqlConnection);
+    SqlCommand RemainingAcCommand = new SqlCommand("update Trains set ACAvailable=ACAvailable-'" + result + "' where ACAvailable='"+Ac+"' and Source='"+TempData["source"]+"' and Destination='"+TempData["destination"]+"' ",sqlConnection);
     RemainingAcCommand.ExecuteNonQuery();
     sqlCommand.ExecuteNonQuery();
 }

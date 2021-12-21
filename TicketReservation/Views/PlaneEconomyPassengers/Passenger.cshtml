@@ -20,7 +20,7 @@
     int Economy = (int)dataReader.GetValue(0);
     dataReader.Close();
     SqlCommand sqlCommand = new SqlCommand("truncate table PlaneEconomyPassengers", sqlConnection);
-    SqlCommand RemainingAcCommand = new SqlCommand("update Planes set EconomyAVBL=EconomyAVBL-'" + result + "' where EconomyAVBL='" + Economy+ "' ", sqlConnection); ;
+    SqlCommand RemainingAcCommand = new SqlCommand("update Planes set EconomyAVBL=EconomyAVBL-'" + result + "' where EconomyAVBL='" + Economy+ "' and Source='"+TempData["source"]+"' and Destination='"+TempData["destination"]+"' ", sqlConnection); ;
     RemainingAcCommand.ExecuteNonQuery();
     sqlCommand.ExecuteNonQuery();
 }

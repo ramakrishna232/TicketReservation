@@ -39,6 +39,8 @@ namespace TicketReservation.Controllers
             var destination = form["destination"].ToString();
             ViewBag.Source = source;
             ViewBag.Destination = destination;
+            TempData["source"] = form["source"];
+            TempData["destination"] = form["destination"];
             return View();
         }
         public ActionResult Plane()
@@ -52,6 +54,8 @@ namespace TicketReservation.Controllers
             var destination = form["destination"].ToString();
             ViewBag.Source = source;
             ViewBag.Destination = destination;
+            TempData["source"] = form["source"];
+            TempData["destination"] = form["destination"];
             return View();
         }
     }
