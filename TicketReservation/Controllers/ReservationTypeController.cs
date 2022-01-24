@@ -10,6 +10,7 @@ namespace TicketReservation.Controllers
     public class ReservationTypeController : Controller 
     {
         // GET: ReservationType
+        [Authorize]
         public ActionResult Train()
         {
             
@@ -28,6 +29,7 @@ namespace TicketReservation.Controllers
             TempData["destination"] = form["destination"];
             return View();
         }
+        [Authorize]
         public ActionResult Bus()
         {
             return View();
@@ -43,6 +45,7 @@ namespace TicketReservation.Controllers
             TempData["destination"] = form["destination"];
             return View();
         }
+        [Authorize]
         public ActionResult Plane()
         {
             return View();

@@ -23,6 +23,7 @@
     SqlCommand RemainingAcCommand = new SqlCommand("update Trains set SLAvailable=SLAvailable-'" + result + "' where SLAvailable='" + Sl + "' and Source='"+TempData["source"]+"' and Destination='"+TempData["destination"]+"'", sqlConnection); ;
     RemainingAcCommand.ExecuteNonQuery();
     sqlCommand.ExecuteNonQuery();
+    sqlConnection.Close();
 }
 <h2>passengerDetail</h2>
 <h3>Your ticket details:</h3>
@@ -58,55 +59,120 @@
                 @{
                     if (Sl <= 936 && Sl >= 864)
                     {
-                        <p>CN/RB/S1-@(936-(Sl-1))</p>
+                        <p>CN/RB/S1-@(937-(Sl-1-i))</p>
+                        int FirstCoach = 937 - (Sl - 1 - i);
+                        sqlConnection.Open();
+                        SqlCommand firstCommand = new SqlCommand("insert into AdminSlList values('" + item.Name + "','" + item.Age + "','" + TempData["source"] + "','" + TempData["destination"] + "','CN/RB/S1-" + FirstCoach + "')", sqlConnection);
+                        firstCommand.ExecuteNonQuery();
+                        sqlConnection.Close();
                     }
                     if (Sl < 864 && Sl >= 792)
                     {
                         <p>CN/RB/S2-@(865-(Sl-1-i))</p>
+                        int FirstCoach =865 - (Sl - 1 - i);
+                        sqlConnection.Open();
+                        SqlCommand firstCommand = new SqlCommand("insert into AdminSlList values('" + item.Name + "','" + item.Age + "','" + TempData["source"] + "','" + TempData["destination"] + "','CN/RB/S2-" + FirstCoach + "')", sqlConnection);
+                        firstCommand.ExecuteNonQuery();
+                        sqlConnection.Close();
                     }
                     if (Sl <792 && Sl >= 720)
                     {
                         <p>CN/RB/S3-@(793-(Sl-1-i))</p>
+                        int FirstCoach =793 - (Sl - 1 - i);
+                        sqlConnection.Open();
+                        SqlCommand firstCommand = new SqlCommand("insert into AdminSlList values('" + item.Name + "','" + item.Age + "','" + TempData["source"] + "','" + TempData["destination"] + "','CN/RB/S3-" + FirstCoach + "')", sqlConnection);
+                        firstCommand.ExecuteNonQuery();
+                        sqlConnection.Close();
                     }
                     if (Sl <720 && Sl >= 648)
                     {
                         <p>CN/RB/S4-@(721-(Sl-1-i))</p>
+                        int FirstCoach =721 - (Sl - 1 - i);
+                        sqlConnection.Open();
+                        SqlCommand firstCommand = new SqlCommand("insert into AdminSlList values('" + item.Name + "','" + item.Age + "','" + TempData["source"] + "','" + TempData["destination"] + "','CN/RB/S4-" + FirstCoach + "')", sqlConnection);
+                        firstCommand.ExecuteNonQuery();
+                        sqlConnection.Close();
                     }
                     if (Sl <648 && Sl >= 576)
                     {
                         <p>CN/RB/S5-@(649-(Sl-1-i))</p>
+                        int FirstCoach = 649 - (Sl - 1 - i);
+                        sqlConnection.Open();
+                        SqlCommand firstCommand = new SqlCommand("insert into AdminSlList values('" + item.Name + "','" + item.Age + "','" + TempData["source"] + "','" + TempData["destination"] + "','CN/RB/S5-" + FirstCoach + "')", sqlConnection);
+                        firstCommand.ExecuteNonQuery();
+                        sqlConnection.Close();
                     }
                     if (Sl <576 && Sl >=504)
                     {
                         <p>CN/RB/S6-@(577-(Sl-1-i))</p>
+                        int FirstCoach = 577 - (Sl - 1 - i);
+                        sqlConnection.Open();
+                        SqlCommand firstCommand = new SqlCommand("insert into AdminSlList values('" + item.Name + "','" + item.Age + "','" + TempData["source"] + "','" + TempData["destination"] + "','CN/RB/S6-" + FirstCoach + "')", sqlConnection);
+                        firstCommand.ExecuteNonQuery();
+                        sqlConnection.Close();
                     }
                     if (Sl <504 && Sl >= 432)
                     {
                         <p>CN/RB/S7-@(505-(Sl-1-i))</p>
+                        int FirstCoach = 505 - (Sl - 1 - i);
+                        sqlConnection.Open();
+                        SqlCommand firstCommand = new SqlCommand("insert into AdminSlList values('" + item.Name + "','" + item.Age + "','" + TempData["source"] + "','" + TempData["destination"] + "','CN/RB/S7-" + FirstCoach + "')", sqlConnection);
+                        firstCommand.ExecuteNonQuery();
+                        sqlConnection.Close();
                     }
                     if (Sl <432 && Sl >=360)
                     {
                         <p>CN/RB/S8-@(433-(Sl-1-i))</p>
+                        int FirstCoach = 433 - (Sl - 1 - i);
+                        sqlConnection.Open();
+                        SqlCommand firstCommand = new SqlCommand("insert into AdminSlList values('" + item.Name + "','" + item.Age + "','" + TempData["source"] + "','" + TempData["destination"] + "','CN/RB/S8-" + FirstCoach + "')", sqlConnection);
+                        firstCommand.ExecuteNonQuery();
+                        sqlConnection.Close();
                     }
                     if (Sl < 360 && Sl >= 288)
                     {
                         <p>CN/RB/S9-@(361-(Sl-1-i))</p>
+                        int FirstCoach = 361 - (Sl - 1 - i);
+                        sqlConnection.Open();
+                        SqlCommand firstCommand = new SqlCommand("insert into AdminSlList values('" + item.Name + "','" + item.Age + "','" + TempData["source"] + "','" + TempData["destination"] + "','CN/RB/S9-" + FirstCoach + "')", sqlConnection);
+                        firstCommand.ExecuteNonQuery();
+                        sqlConnection.Close();
                     }
                     if (Sl <288 && Sl >= 216)
                     {
                         <p>CN/RB/S10-@(289-(Sl-1-i))</p>
+                        int FirstCoach = 289 - (Sl - 1 - i);
+                        sqlConnection.Open();
+                        SqlCommand firstCommand = new SqlCommand("insert into AdminSlList values('" + item.Name + "','" + item.Age + "','" + TempData["source"] + "','" + TempData["destination"] + "','CN/RB/S10-" + FirstCoach + "')", sqlConnection);
+                        firstCommand.ExecuteNonQuery();
+                        sqlConnection.Close();
                     }
                     if (Sl <216 && Sl >= 144)
                     {
                         <p>CN/RB/S11-@(217-(Sl-1-i))</p>
+                        int FirstCoach = 217 - (Sl - 1 - i);
+                        sqlConnection.Open();
+                        SqlCommand firstCommand = new SqlCommand("insert into AdminSlList values('" + item.Name + "','" + item.Age + "','" + TempData["source"] + "','" + TempData["destination"] + "','CN/RB/S11-" + FirstCoach + "')", sqlConnection);
+                        firstCommand.ExecuteNonQuery();
+                        sqlConnection.Close();
                     }
                     if (Sl < 144 && Sl >= 72)
                     {
                         <p>CN/RB/S12-@(145-(Sl-1-i))</p>
+                        int FirstCoach = 145 - (Sl - 1 - i);
+                        sqlConnection.Open();
+                        SqlCommand firstCommand = new SqlCommand("insert into AdminSlList values('" + item.Name + "','" + item.Age + "','" + TempData["source"] + "','" + TempData["destination"] + "','CN/RB/S12-" + FirstCoach + "')", sqlConnection);
+                        firstCommand.ExecuteNonQuery();
+                        sqlConnection.Close();
                     }
                     if (Sl < 72 && Sl >= 0)
                     {
                         <p>CN/RB/S13-@(73-(Sl-1-i))</p>
+                        int FirstCoach =73- (Sl - 1 - i);
+                        sqlConnection.Open();
+                        SqlCommand firstCommand = new SqlCommand("insert into AdminSlList values('" + item.Name + "','" + item.Age + "','" + TempData["source"] + "','" + TempData["destination"] + "','CN/RB/S13-" + FirstCoach + "')", sqlConnection);
+                        firstCommand.ExecuteNonQuery();
+                        sqlConnection.Close();
                     }
                 }
             </td>

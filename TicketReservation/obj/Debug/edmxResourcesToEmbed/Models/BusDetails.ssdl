@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BusDetailReservationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Bus">
+    <Key>
+      <PropertyRef Name="BusServiceNo" />
+    </Key>
+    <Property Name="Source" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Destination" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="BusType" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="BusServiceNo" Type="int" Nullable="false" />
+    <Property Name="Fare" Type="int" Nullable="false" />
+    <Property Name="Available" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'Reservation.dbo.Planes' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Planes">
+          <Property Name="Source" Type="varchar" MaxLength="20" />
+          <Property Name="Destination" Type="varchar" MaxLength="20" />
+          <Property Name="PlaneName" Type="varchar" MaxLength="20" />
+          <Property Name="PlaneNo" Type="int" />
+          <Property Name="BusinessFare" Type="int" />
+          <Property Name="EconomyFare" Type="int" />
+          <Property Name="BusinessAVBL" Type="int" />
+          <Property Name="EconomyAVBL" Type="int" />
+        </EntityType>-->
+  <EntityContainer Name="BusDetailReservationModelStoreContainer">
+    <EntitySet Name="Bus" EntityType="Self.Bus" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

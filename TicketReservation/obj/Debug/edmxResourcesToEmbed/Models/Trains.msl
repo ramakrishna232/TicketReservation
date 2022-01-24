@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TrainReservationModelStoreContainer" CdmEntityContainer="TrainReservationEntities">
+    <EntitySetMapping Name="Trains">
+      <EntityTypeMapping TypeName="TrainReservationModel.Train">
+        <MappingFragment StoreEntitySet="Trains">
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="Destination" ColumnName="Destination" />
+          <ScalarProperty Name="TrainName" ColumnName="TrainName" />
+          <ScalarProperty Name="TrainNo" ColumnName="TrainNo" />
+          <ScalarProperty Name="ACFare" ColumnName="ACFare" />
+          <ScalarProperty Name="SLFare" ColumnName="SLFare" />
+          <ScalarProperty Name="SSFare" ColumnName="SSFare" />
+          <ScalarProperty Name="ACAvailable" ColumnName="ACAvailable" />
+          <ScalarProperty Name="SLAvailable" ColumnName="SLAvailable" />
+          <ScalarProperty Name="SSAvailable" ColumnName="SSAvailable" />
+          <ScalarProperty Name="sno" ColumnName="sno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

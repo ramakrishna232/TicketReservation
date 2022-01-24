@@ -6,7 +6,7 @@
 <h2>Login</h2>
 <h3>@ViewBag.Message</h3>
 <div style="position:relative;left:200px">
-@using (Html.BeginForm()) { 
+@using (Html.BeginForm()) {
     <table>
         <tr>
         <td>
@@ -16,7 +16,7 @@
         <tr>
         <td>
             @Html.Label("Password")
-            @Html.TextBox("password")
+            @Html.Password("password")
         </td></tr>
         <tr>
         <td>

@@ -12,13 +12,11 @@ namespace TicketReservation.Controllers
 {
     public class TrainsController : Controller
     {
-        private ReservationEntities db = new ReservationEntities();
+        private TrainReservationEntities db = new TrainReservationEntities();
 
         // GET: Trains
         public ActionResult Index()
         {
-
-            
             return View(db.Trains.ToList());
         }
 
@@ -48,7 +46,7 @@ namespace TicketReservation.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Source,Destination,TrainName,TrainNo,ACFare,SLFare,SSFare,ACAvailable,SLAvailable,SSAvailable,")] Train train)
+        public ActionResult Create([Bind(Include = "Source,Destination,TrainName,TrainNo,ACFare,SLFare,SSFare,ACAvailable,SLAvailable,SSAvailable,sno")] Train train)
         {
             if (ModelState.IsValid)
             {

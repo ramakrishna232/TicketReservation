@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using TicketReservation.Models;
 using System.Configuration;
+using System.Web.Security;
 
 namespace TicketReservation.Controllers
 {
@@ -16,6 +17,7 @@ namespace TicketReservation.Controllers
     {
         private CustomerReservationEntities db = new CustomerReservationEntities();
         string Connection = ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString;
+        
 
         // GET: Customers
         public ActionResult Index()
@@ -122,7 +124,7 @@ namespace TicketReservation.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(FormCollection form)
+        public ActionResult Login(FormCollection form,string ReturnUrl)
         {
             ViewBag.Username = form["username"].ToString();
             ViewBag.Password = form["password"].ToString();
@@ -130,16 +132,34 @@ namespace TicketReservation.Controllers
             sqlConnection.Open();
             SqlCommand command = new SqlCommand("select * from Customer where UserId='"+ViewBag.Username+"'  and password='"+ViewBag.Password+"'",sqlConnection);
             SqlDataReader dataReader = command.ExecuteReader();
+            
             if (dataReader.Read())
             {
-                return RedirectToAction("Index","Home");
+                FormsAuthentication.SetAuthCookie(ViewBag.Username, false);
+                return Redirect(ReturnUrl);
+                
             }
+            dataReader.Close();
+            SqlCommand AdminCommand = new SqlCommand("select * from Admin where Username='" + ViewBag.Username + "'and password='" + ViewBag.Password + "'", sqlConnection);
+            SqlDataReader AdminReader = AdminCommand.ExecuteReader();
+            if (AdminReader.Read())
+            {
+                FormsAuthentication.SetAuthCookie(ViewBag.Username, false);
+                return Redirect("https://localhost:44340/Admin/ReservationList");
+                AdminReader.Close();
+            }
+            
             else
             {
                 ViewBag.Message = "You are not registered as user kindly go through SignUp page";
                 return View();
             }
-            return View();
+            
+        }
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            return Redirect("/Home/Index");
         }
 
         protected override void Dispose(bool disposing)

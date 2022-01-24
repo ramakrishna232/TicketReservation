@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Train";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Train</h2>
+<div class="container">
+    <button style="border:none">@Html.ActionLink("ACpassengerList", "ACList", "Admin")</button>
+    <button style="border:none">@Html.ActionLink("SLpassengerList", "SLList", "Admin")</button>
+    <button style="border:none">@Html.ActionLink("SSpassengerList", "SSList", "Admin")</button>
+    <button style="border:none">@Html.ActionLink("Details", "Index", "Trains")</button>
+</div>
+<h2>Bus</h2>
+<div class="container">
+    <button style="border:none">@Html.ActionLink("BuspassengerList","BusList","Admin")</button>
+</div>
+<h2>Plane</h2>
+<div class="container">
+    <button style="border:none">@Html.ActionLink("BusinesspassengerList","BusinessList","Admin")</button>
+    <button style="border:none">@Html.ActionLink("EconomypassengerList","EconomyList","Admin")</button>
+</div>

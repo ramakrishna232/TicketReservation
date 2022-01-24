@@ -1,0 +1,42 @@
+﻿@using System.Data.SqlClient;
+@using System.Configuration;
+@{
+    ViewBag.Title = "EconomyList";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>EconomyList</h2>
+
+
+@{
+    string connection = ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString;
+    SqlConnection sqlConnection = new SqlConnection(connection);
+    sqlConnection.Open();
+    SqlCommand sqlCommand = new SqlCommand("select * from AdminPEList", sqlConnection);
+    SqlDataReader dataReader = sqlCommand.ExecuteReader();
+}
+<table class="table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Source</th>
+        <th>Destination</th>
+        <th>SeatNo</th>
+    </tr>
+    @{while (dataReader.Read())
+        {
+            <tr>
+                <td>@dataReader.GetValue(0)</td>
+                <td>@dataReader.GetValue(1)</td>
+                <td>@dataReader.GetValue(2)</td>
+                <td>@dataReader.GetValue(3)</td>
+                <td>@dataReader.GetValue(4)</td>
+            </tr>
+        }
+    }
+
+</table>
+@{
+    dataReader.Close();
+    sqlConnection.Close();
+}

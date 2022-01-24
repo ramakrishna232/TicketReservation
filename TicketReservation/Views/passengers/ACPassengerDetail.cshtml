@@ -1,12 +1,14 @@
 ﻿@model IEnumerable<TicketReservation.Models.passenger>
 @using System.Data.SqlClient
+@using System.Configuration
 
 @{
     ViewBag.Title = "passengerDetail";
 }
 @{
     int i = 0;
-    SqlConnection sqlConnection = new SqlConnection("server=.;database=Reservation;integrated security=SSPI");
+    string connection = ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString;
+    SqlConnection sqlConnection = new SqlConnection(connection);
     sqlConnection.Open();
     SqlCommand countCommand = new SqlCommand("select count(name) from passenger", sqlConnection);
     int result = (int)countCommand.ExecuteScalar();
@@ -19,6 +21,7 @@
     SqlCommand RemainingAcCommand = new SqlCommand("update Trains set ACAvailable=ACAvailable-'" + result + "' where ACAvailable='"+Ac+"' and Source='"+TempData["source"]+"' and Destination='"+TempData["destination"]+"' ",sqlConnection);
     RemainingAcCommand.ExecuteNonQuery();
     sqlCommand.ExecuteNonQuery();
+    sqlConnection.Close();
 }
 <h2>passengerDetail</h2>
 <h3>Your ticket details:</h3>
@@ -55,23 +58,49 @@
                     if (Ac <= 360 && Ac >= 288)
                     {
                         <p>CN/RB/A1-@(361-(Ac-1-i))</p>
+                        int FirstCoach = 361 - (Ac - 1 - i);
+                        sqlConnection.Open();
+                        SqlCommand firstCommand = new SqlCommand("insert into AdminAcList values('" + item.Name + "','" + item.Age + "','" + TempData["source"] + "','" + TempData["destination"] + "','CN/RB/A1-" + FirstCoach + "')", sqlConnection);
+                        firstCommand.ExecuteNonQuery();
+                        sqlConnection.Close();
+
                     }
                     if (Ac < 288 && Ac >= 216)
                     {
                         <p>CN/RB/A2-@(289-(@Ac-1-i))</p>
-                        
+                        int SecondCoach = 289 - (Ac - 1 - i);
+                        sqlConnection.Open();
+                        SqlCommand firstCommand = new SqlCommand("insert into AdminAcList values('" + item.Name + "','" + item.Age + "','" + TempData["source"] + "','" + TempData["destination"] + "','CN/RB/A2-" + SecondCoach + "')", sqlConnection);
+                        firstCommand.ExecuteNonQuery();
+                        sqlConnection.Close();
+
                     }
                     if (Ac < 216 && Ac >= 144)
                     {
                         <p>CN/RB/A3-@(217-(@Ac-1-i))</p>
+                        int ThirdCoach = 217 - (Ac - 1 - i);
+                        sqlConnection.Open();
+                        SqlCommand firstCommand = new SqlCommand("insert into AdminAcList values('" + item.Name + "','" + item.Age + "','" + TempData["source"] + "','" + TempData["destination"] + "','CN/RB/A3-" + ThirdCoach + "')", sqlConnection);
+                        firstCommand.ExecuteNonQuery();
+                        sqlConnection.Close();
                     }
                     if (Ac < 144 && Ac >= 72)
                     {
                         <p>CN/RB/A4-@(145-(@Ac-1-i))</p>
+                        int FirstCoach = 145- (Ac - 1 - i);
+                        sqlConnection.Open();
+                        SqlCommand firstCommand = new SqlCommand("insert into AdminAcList values('" + item.Name + "','" + item.Age + "','" + TempData["source"] + "','" + TempData["destination"] + "','CN/RB/A4-" + FirstCoach + "')", sqlConnection);
+                        firstCommand.ExecuteNonQuery();
+                        sqlConnection.Close();
                     }
                     if (Ac < 72 && Ac > 0)
                     {
                         <p>CN/RB/A5-@(73-(@Ac-1-i))</p>
+                        int FirstCoach = 73 - (Ac - 1 - i);
+                        sqlConnection.Open();
+                        SqlCommand firstCommand = new SqlCommand("insert into AdminAcList values('" + item.Name + "','" + item.Age + "','" + TempData["source"] + "','" + TempData["destination"] + "','CN/RB/A5-" + FirstCoach + "')", sqlConnection);
+                        firstCommand.ExecuteNonQuery();
+                        sqlConnection.Close();
                     }
                 }
             </td>

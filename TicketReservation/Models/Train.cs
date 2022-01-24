@@ -6,18 +6,14 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System.Collections;
-using System.Configuration;
-using System.Data.SqlClient;
+
 namespace TicketReservation.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Configuration;
-   
+    
     public partial class Train
     {
-        
         public string Source { get; set; }
         public string Destination { get; set; }
         public string TrainName { get; set; }
@@ -29,28 +25,5 @@ namespace TicketReservation.Models
         public Nullable<int> SLAvailable { get; set; }
         public Nullable<int> SSAvailable { get; set; }
         public int sno { get; set; }
-        
-        public SqlConnection Connection = new SqlConnection("server=.;database=Reservation;integrated security=SSPI");
-        
-        public List <Train> getTrains(string source,string destination)
-        {
-            Connection.Open();
-            List<Train> trainsObj = new List<Train>();
-            SqlCommand sqlCommand = new SqlCommand("select * from Trains where Source='" +source+"' and Destination='"+destination+"'", Connection);
-            SqlDataReader dataReader = sqlCommand.ExecuteReader();
-            while (dataReader.Read())
-            {
-                Train t = new Train();
-                t.Source = dataReader.GetString(0);
-                t.Destination = dataReader.GetString(1);
-                t.TrainName = dataReader.GetString(2);
-                t.TrainNo = dataReader.GetInt32(3);
-                t.ACAvailable = dataReader.GetInt32(7);
-                t.SLAvailable = dataReader.GetInt32(8);
-                t.SSAvailable = dataReader.GetInt32(9);
-                trainsObj.Add(t);
-            }
-            return trainsObj;
-        }
     }
 }

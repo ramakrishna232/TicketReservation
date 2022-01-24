@@ -22,12 +22,13 @@
             </div>
             <div>
                 <ul class="nav navbar-nav  ">
+                    <li>@Html.ActionLink("AboutUS", "About", "Home")</li>
                     <li>@Html.ActionLink("Train", "Train", "ReservationType")</li>
                     <li>@Html.ActionLink("Bus", "Bus", "ReservationType")</li>
                     <li>@Html.ActionLink("Plane", "Plane", "ReservationType")</li>
                     <li>@Html.ActionLink("Login", "Login", "Customers")</li>
                     <li>@Html.ActionLink("Sign Up", "Create", "Customers")</li>
-
+                    <li>@Html.ActionLink("LogOut","LogOut","Customers")</li>
 
                 </ul>
                
@@ -43,7 +44,7 @@
         <hr />
         
         <footer>
-            <p>&copy; @DateTime.Now.Year - Ticket Reservation Application</p>
+            <p>&copy; 2021 - Ticket Reservation Application</p>
         </footer>
     </div>
    

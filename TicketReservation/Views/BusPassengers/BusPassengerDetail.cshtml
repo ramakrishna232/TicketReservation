@@ -22,6 +22,7 @@
     SqlCommand RemainingAcCommand = new SqlCommand("update Bus set Available=Available-'" + result + "' where Available='" + Seat + "' and Source='"+TempData["source"]+"' and Destination='"+TempData["destination"]+"'", sqlConnection);
     RemainingAcCommand.ExecuteNonQuery();
     sqlCommand.ExecuteNonQuery();
+    sqlConnection.Close();
 }
 <h2>passengerDetail</h2>
 <h3>Your ticket details:</h3>
@@ -54,7 +55,14 @@
                 @Html.DisplayFor(modelItem => item.Gender)
             </td>
             <td>
-                <p>@(29-(Seat-1-i))</p>
+                <p>@(29 - (Seat - 1 - i))</p>
+                @{ 
+                    int FirstCoach = 29 - (Seat - 1 - i);
+                    sqlConnection.Open();
+                    SqlCommand firstCommand = new SqlCommand("insert into AdminBusList values('" + item.Name + "','" + item.Age + "','" + TempData["source"] + "','" + TempData["destination"] + "','" + FirstCoach + "')", sqlConnection);
+                    firstCommand.ExecuteNonQuery();
+                    sqlConnection.Close();
+                }
             </td>
         </tr>
         i++;

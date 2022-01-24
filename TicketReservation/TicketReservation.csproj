@@ -202,6 +202,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BusPassengersController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -209,7 +210,6 @@
     <Compile Include="Controllers\PlaneEconomyPassengersController.cs" />
     <Compile Include="Controllers\PlanePassengersController.cs" />
     <Compile Include="Controllers\ReservationTypeController.cs" />
-    <Compile Include="Controllers\RetriveController.cs" />
     <Compile Include="Controllers\SLPassengersController.cs" />
     <Compile Include="Controllers\SSPassengersController.cs" />
     <Compile Include="Controllers\TrainsController.cs" />
@@ -220,11 +220,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Bus.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Bus.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Bus.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Bus.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -359,7 +354,22 @@
       <DependentUpon>SSAvailable.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Train.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Trains.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Trains.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Trains.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Trains.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Trains.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Trains.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Trains.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -452,6 +462,16 @@
       <DependentUpon>SSAvailable.edmx</DependentUpon>
       <LastGenOutput>SSAvailable.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\Trains.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Trains.edmx</DependentUpon>
+      <LastGenOutput>Trains.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Trains.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Trains.edmx</DependentUpon>
+      <LastGenOutput>Trains.cs</LastGenOutput>
+    </Content>
     <Content Include="Pictures\Bus.jpg" />
     <Content Include="Pictures\Plane.jpg" />
     <Content Include="Pictures\Train.jpg" />
@@ -513,6 +533,13 @@
     <Content Include="Models\Customer.edmx.diagram">
       <DependentUpon>Customer.edmx</DependentUpon>
     </Content>
+    <EntityDeploy Include="Models\Trains.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Trains.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Trains.edmx.diagram">
+      <DependentUpon>Trains.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -542,14 +569,6 @@
     <Content Include="Views\ReservationType\Train.cshtml" />
     <Content Include="Views\ReservationType\Bus.cshtml" />
     <Content Include="Views\ReservationType\Plane.cshtml" />
-    <Content Include="Views\Trains\Create.cshtml" />
-    <Content Include="Views\Trains\Delete.cshtml" />
-    <Content Include="Views\Trains\Details.cshtml" />
-    <Content Include="Views\Trains\Edit.cshtml" />
-    <Content Include="Views\Trains\Index.cshtml" />
-    <Content Include="Views\Retrive\Index.cshtml" />
-    <Content Include="Views\Retrive\booking.cshtml" />
-    <Content Include="Views\Retrive\PassengerView.cshtml" />
     <Content Include="Views\passengers\Create.cshtml" />
     <Content Include="Views\passengers\Delete.cshtml" />
     <Content Include="Views\passengers\Details.cshtml" />
@@ -598,6 +617,20 @@
     <Content Include="Views\Customers\Edit.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Customers\Login.cshtml" />
+    <Content Include="Views\Shared\AdminLayout.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Trains\Create.cshtml" />
+    <Content Include="Views\Trains\Delete.cshtml" />
+    <Content Include="Views\Trains\Details.cshtml" />
+    <Content Include="Views\Trains\Edit.cshtml" />
+    <Content Include="Views\Trains\Index.cshtml" />
+    <Content Include="Views\Admin\ReservationList.cshtml" />
+    <Content Include="Views\Admin\ACList.cshtml" />
+    <Content Include="Views\Admin\SLList.cshtml" />
+    <Content Include="Views\Admin\SSList.cshtml" />
+    <Content Include="Views\Admin\BusList.cshtml" />
+    <Content Include="Views\Admin\EconomyList.cshtml" />
+    <Content Include="Views\Admin\BusinessList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

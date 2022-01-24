@@ -23,7 +23,9 @@
     SqlCommand RemainingAcCommand = new SqlCommand("update Planes set EconomyAVBL=EconomyAVBL-'" + result + "' where EconomyAVBL='" + Economy+ "' and Source='"+TempData["source"]+"' and Destination='"+TempData["destination"]+"' ", sqlConnection); ;
     RemainingAcCommand.ExecuteNonQuery();
     sqlCommand.ExecuteNonQuery();
+    sqlConnection.Close();
 }
+
 <h2>passengerDetail</h2>
 <h3>Your ticket details:</h3>
 <table class="table">
@@ -58,9 +60,16 @@
             <td>
 
                 <p>@(51-(Economy-1-i))B</p>
+                @{ 
+                    int FirstCoach = 51- (Economy - 1 - i);
+                    sqlConnection.Open();
+                    SqlCommand firstCommand = new SqlCommand("insert into AdminPEList values('" + item.Name + "','" + item.Age + "','" + TempData["source"] + "','" + TempData["destination"] + "','" + FirstCoach + "B')", sqlConnection);
+                    firstCommand.ExecuteNonQuery();
+                    sqlConnection.Close();
+                }
 
             </td>
         </tr>
-        i++;
-    }
+                        i++;
+                    }
 </table>
